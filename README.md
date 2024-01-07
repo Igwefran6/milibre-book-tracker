@@ -1,0 +1,1 @@
+milibre is a web application designed to help you track and manage your book collection. Whether you're an avid reader or a casual book enthusiast, milibre provides a user-friendly interface to organize and keep tabs on your literary treasures.
