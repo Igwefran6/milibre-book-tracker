@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="" content="" />
+        <meta http-equiv="X-UA-Compatible" content="IE=7,8,edge" />
+        <meta name="locale" property="og:locale" content="en_US" />
+        <meta
+            name="title"
+            property="og:title"
+            content="MiLibre | Your Personal Online book-tracker"
+        />
+        <meta http-equiv="refresh" content="text/html;charset=UTF-8" />
+        <meta
+            name="description"
+            property="og:description"
+            content="MiLibre is a personal online book-tracker"
+        />
+        <link rel="stylesheet" href="css/index.css" />
+        <link rel="stylesheet" href="css/nomalize.css" />
+        <script src="js/index.js" defer></script>
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <title>MiLibre | Online Book-tracker</title>
+    </head>
+    <body>
+        <header>
+            <div class="site-logo">MiLibre</div>
+            <div class="toggle-nav">☰</div>
+        </header>
+        <nav class="navigation" role="navigation">
+            <ul>
+                <li><a href="#">Source Code</a></li>
+                <li><a href="#">About Author</a></li>
+                <li><a href="#">About Website</a></li>
+            </ul>
+        </nav>
+        <button class="add-new-book">+ Add New Book</button>
+        <dialog class="dialog">
+            <form>
+                <div class="dialog-inputs">
+                    <input
+                        class="dialog-input"
+                        type="text"
+                        name="book-title"
+                        id="book-title"
+                        value=""
+                        placeholder=" "
+                    />
+                    <span class="dialog-input-label">title</span>
+                </div>
+                <div class="dialog-inputs">
+                    <input
+                        class="dialog-input"
+                        type="text"
+                        name="book-title"
+                        id="book-title"
+                        value=""
+                        placeholder=" "
+                    />
+                    <span class="dialog-input-label">author</span>
+                </div>
+                <div class="dialog-inputs">
+                    <input
+                        class="dialog-input"
+                        type="number"
+                        name="book-page-number"
+                        id="book-page-number"
+                        value=""
+                        placeholder=" "
+                    />
+                    <span class="dialog-input-label">page number</span>
+                </div>
+                <div class="dialog-inputs">
+                    <input
+                        class="checkbox"
+                        type="checkbox"
+                        name="read"
+                        id="read"
+                    />
+                    <label for="read">Have you read the book?</label>
+                </div>
+                <div class="btn-group">
+                    <button class="btn ok" type="submit">Ok</button>
+                    <button class="btn cancel" type="submit">Cancel</button>
+                </div>
+            </form>
+        </dialog>
+
+        <main>
+            <div class="books">
+                <div class="book">
+                    <div class="book-image">
+                        <img
+                            src="https://picsum.photos/seed/200/200/200"
+                            alt="book-image"
+                        />
+                    </div>
+                    <div class="book-panel">
+                        <div class="book-title"><p>Alice in Everlands</p></div>
+                        <div class="book-author"><p>Lowell Powell</p></div>
+                        <div class="other-book-items">
+                            <div class="pages">2456 pages</div>
+                            <div>Edit</div>
+                            <div>Status: Read</div>
+                            <div>Delete</div>
+                            <div>You've Read this book</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="books">
+                <div class="book">
+                    <div class="book-image">
+                        <img
+                            src="https://picsum.photos/seed/300/200/200"
+                            alt="book-image"
+                        />
+                    </div>
+                    <div class="book-panel">
+                        <div class="book-title"><p>Alice in Everlands</p></div>
+                        <div class="book-author"><p>Lowell Powell</p></div>
+                        <div class="other-book-items">
+                            <div class="pages">2456 pages</div>
+                            <div>Edit</div>
+                            <div>Status: Read</div>
+                            <div>Delete</div>
+                            <div>You've Read this book</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+</html>

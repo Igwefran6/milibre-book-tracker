@@ -1,0 +1,367 @@
+/* Setting up variables and global @font-face in the :root selector*/
+
+:root {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Oxygen,
+        Ubuntu,
+        Cantarell,
+        "Open Sans",
+        "Helvetica Neue",
+        sans-serif;
+    --main--background-color: #f5f5f5;
+    --header--background-color: #fafafa;
+    --footer--background-color: #212121;
+    --box-shadow--color: #bdbdbd;
+    --logo-and-hamburger-bg: #ff8f00;
+    --logo-color: var(--logo-and-hamburger-bg);
+    --logo-and-hamburger-bg-on-hover: #f57c00;
+    --logo-and-hamburger-text: var(--header--background-color);
+    --dialog-input-text-color: #616161;
+    --dialog-input-border: var(--logo-and-hamburger-bg);
+    --input-outline-color: #bf360c;
+    --dialog-input-label-font-size: 0.8rem;
+    --input-label-bg: var(--logo-and-hamburger-bg);
+    --input-label-color: rgba(0, 0, 0, 0.7);
+    --submit-btn-bg: #43a047;
+    --submit-btn-color: var(--header--background-color);
+    --cancel-btn-bg: #ef5350;
+    --cancel-btn-color: var(--header--background-color);
+    --selected-link-color: var(--logo-and-hamburger-bg);
+    --btn-group-and-navigation-bg: #e0e0e0;
+    --book-border-color: var(--logo-and-hamburger-bg);
+    --panel-text-color: var(--dialog-input-text-color);
+}
+
+/*Resetting margin, padding and box-sizing*/
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styling header, navigation and there contents/children */
+
+header {
+    background: var(--header--background-color);
+
+    box-shadow: 0 0 4px 1px var(--box-shadow--color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 9;
+}
+
+.site-logo,
+.toggle-nav,
+.add-new-book {
+    font-size: 1.4rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: var(--logo-and-hamburger-bg);
+    color: var(--logo-and-hamburger-text);
+    outline: 2px solid var(--logo-and-hamburger-bg);
+    outline-offset: 2px;
+    transition: all 0.5s;
+    margin: 20px;
+}
+
+.site-logo {
+    outline: none;
+    background: transparent;
+    color: var(--logo-color);
+    padding: 0;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    font-variation-settings:
+        "FILL" 1,
+        "wght" 500,
+        "GRAD" 200,
+        "opsz" 48;
+}
+
+.site-logo::before {
+    content: "\e865";
+    font-family: "Material Symbols Rounded";
+    vertical-align: top;
+}
+
+.navigation {
+    display: block;
+    background: var(--btn-group-and-navigation-bg);
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    margin: 4px 0;
+    padding: 0;
+    transition: height 0.5s ease;
+    -moz-transition: height 0.5s ease;
+    -o-transition: height 0.5s ease;
+    transition-delay: 0.1s;
+}
+
+.navigation.open {
+    height: 150px;
+}
+
+ul {
+    list-style-type: none;
+    font-weight: bold;
+    padding: 20px;
+}
+
+li {
+    padding: 5px;
+    margin: 5px;
+    text-decoration: underline;
+    text-decoration-color: var(--selected-link-color);
+}
+
+li:hover::before {
+    content: "clicked ";
+    font-size: 0.5rem;
+    color: var(--selected-link-color);
+}
+
+a {
+    color: #3a3a3a;
+}
+
+.add-new-book {
+    position: fixed;
+    border: none;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 8px 20px;
+    z-index: 2;
+}
+
+/* styling the dialog and it's children*/
+
+.dialog {
+    width: 65vw;
+    height: fit-content;
+    padding: 20px;
+
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 1px var(--box-shadow--color);
+}
+
+.dialog-inputs {
+    position: relative;
+}
+
+.dialog-input {
+    display: block;
+    padding: 4px 6px;
+    width: 95%;
+    font-size: 0.9rem;
+    color: var(--dialog-input-text-color);
+    border: 2px solid var(--dialog-input-border);
+    border-radius: 5px;
+    outline-offset: 2px;
+    outline-color: var(--input-outline-color);
+    background: transparent;
+    margin: 10px 0;
+    background: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    margin: auto;
+    margin-top: 10px;
+    transition: all 0.3s;
+}
+
+.dialog-input:hover {
+    width: 100%;
+}
+
+.dialog-input-label {
+    position: absolute;
+    left: 6%;
+    top: 25%;
+    background: transparent;
+    white-space: nowrap;
+    transform: translate(0, 0);
+    transform-origin: 0 0;
+    font-size: var(--dialog-input-label-font-size);
+    font-weight: bold;
+    z-index: -1;
+    transition: all 0.3s;
+    transition-delay: 1s;
+    color: var(--input-label-color);
+    border-radius: 5px;
+}
+
+.dialog-input:focus + .dialog-input-label,
+.dialog-input:not(:placeholder-shown) + .dialog-input-label {
+    left: 4%;
+    top: -25%;
+    z-index: 1;
+    font-size: 0.6rem;
+    background: var(--input-label-bg);
+    padding: 0 5px;
+    border-radius: 2px;
+    color: white;
+    transition-delay: 0s;
+}
+
+label {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+.checkbox {
+    display: inline-block;
+    accent-color: var(--input-label-bg);
+    margin-left: 8px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.checkbox:focus,
+.checkbox:hover {
+    accent-color: var(--input-label-bg);
+    outline: 2px solid var(--dialog-input-border);
+    outline-offset: 2px;
+}
+
+.btn {
+    margin: 10px 0;
+    padding: 6px 14px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    outline-offset: 2px;
+
+    /* border: 2px solid var(--dialog-input-border); */
+}
+
+.btn-group {
+    background: var(--btn-group-and-navigation-bg);
+    padding: 0 10px;
+    border-radius: 5px;
+    margin: 1px;
+}
+
+.btn-group > :first-child {
+    background: var(--submit-btn-bg);
+    color: var(--submit-btn-color);
+    outline: 2px solid var(--submit-btn-bg);
+    margin-right: 3px;
+}
+.btn-group > :last-child {
+    background: var(--cancel-btn-bg);
+    color: var(--cancel-btn-color);
+    outline: 2px solid var(--cancel-btn-bg);
+    margin-left: 3px;
+}
+
+/* styling main and book books */
+
+main {
+    background: transparent;
+}
+
+.books {
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.book {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    height: 200px;
+    border-radius: 5px;
+    transition: all 0.3s;
+    padding: 10px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: auto 2fr;
+    overflow: hidden;
+}
+
+.book:hover {
+    box-shadow: 0 2px 4px 0 var(--box-shadow--color);
+}
+
+.book div {
+    border-radius: 5px;
+}
+
+.book-image {
+    width: 140px;
+    height: 180px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.book-panel {
+    /* */
+    display: grid;
+    gap: 5px;
+    grid-template-rows: 1fr 1fr 3fr;
+}
+
+.book-title,
+.book-author {
+    display: flex;
+    align-items: center;
+    color: var(--panel-text-color);
+    font-size: 0.9rem;
+    background: var(--btn-group-and-navigation-bg);
+    padding: 0 10px;
+}
+
+.book-title {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.other-book-items {
+    padding-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 3px;
+    background: var(--btn-group-and-navigation-bg);
+    padding: 8px;
+}
+
+.other-book-items > div {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--panel-text-color);
+}
+
+.other-book-items > :nth-child(1),
+.other-book-items > :nth-child(3) {
+    grid-column: span 2;
+}
+
+.other-book-items > :nth-child(5) {
+    grid-column: span 3;
+}
+
+.book-image > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
