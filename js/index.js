@@ -32,9 +32,8 @@ class Book {
 
 // Necessary Events
 document.querySelector(".ok").addEventListener("click", event => {
-    // event.preventDefault();
     Book.displayBooks();
-    dialog.close();
+    event.preventDefault()
 });
 
 document.querySelector(".add-new-book").addEventListener("click", () => {
@@ -42,7 +41,6 @@ document.querySelector(".add-new-book").addEventListener("click", () => {
 });
 
 document.querySelector(".cancel").addEventListener("click", event => {
-    event.preventDefault();
     dialog.close();
 });
 

@@ -40,7 +40,7 @@
         </nav>
         <button class="add-new-book">+ Add New Book</button>
         <dialog class="dialog">
-            <form>
+            <form id="bookForm">
                 <div class="dialog-inputs">
                     <input
                         class="dialog-input"
@@ -86,11 +86,12 @@
                         id="isRead"
                         required
                     />
-                    <label for="read">Have you read the book?</label>
+                    <label for="isRead">Have you read the book?</label>
                 </div>
                 <div class="btn-group">
-                    <input class="btn ok" type="submit" value="Ok" />
-                    <input class="btn cancel" type="submit" value="Cancel" />
+                    <input class="btn ok" type="submit" value="Ok"
+                    form="bookForm"/>
+                    <input class="btn cancel" type="button" value="Cancel" />
                 </div>
             </form>
         </dialog>
