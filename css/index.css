@@ -255,19 +255,19 @@ label {
     padding: 0 10px;
     border-radius: 5px;
     margin: 1px;
+    display: flex;
+    gap: 10px;
 }
 
 .btn-group > :first-child {
     background: var(--submit-btn-bg);
     color: var(--submit-btn-color);
     outline: 2px solid var(--submit-btn-bg);
-    margin-right: 3px;
 }
 .btn-group > :last-child {
     background: var(--cancel-btn-bg);
     color: var(--cancel-btn-color);
     outline: 2px solid var(--cancel-btn-bg);
-    margin-left: 3px;
 }
 
 /* styling main and book books */

@@ -49,6 +49,8 @@
                         id="book-title"
                         value=""
                         placeholder=" "
+                        required
+                        min="1"
                     />
                     <span class="dialog-input-label">title</span>
                 </div>
@@ -56,10 +58,11 @@
                     <input
                         class="dialog-input"
                         type="text"
-                        name="book-title"
-                        id="book-title"
+                        name="book-author"
+                        id="book-author"
                         value=""
                         placeholder=" "
+                        required
                     />
                     <span class="dialog-input-label">author</span>
                 </div>
@@ -67,10 +70,11 @@
                     <input
                         class="dialog-input"
                         type="number"
-                        name="book-page-number"
-                        id="book-page-number"
+                        name="book-page-count"
+                        id="book-page-count"
                         value=""
                         placeholder=" "
+                        required
                     />
                     <span class="dialog-input-label">page number</span>
                 </div>
@@ -78,14 +82,15 @@
                     <input
                         class="checkbox"
                         type="checkbox"
-                        name="read"
-                        id="read"
+                        name="isRead"
+                        id="isRead"
+                        required
                     />
                     <label for="read">Have you read the book?</label>
                 </div>
                 <div class="btn-group">
-                    <button class="btn ok" type="submit">Ok</button>
-                    <button class="btn cancel" type="submit">Cancel</button>
+                    <input class="btn ok" type="submit" value="Ok" />
+                    <input class="btn cancel" type="submit" value="Cancel" />
                 </div>
             </form>
         </dialog>
