@@ -17,7 +17,8 @@
     --header--background-color: #fafafa;
     --footer--background-color: #212121;
     --box-shadow--color: #bdbdbd;
-    --logo-and-hamburger-bg: #ff8f00;
+    --accent-orange: #ff8f00;
+    --logo-and-hamburger-bg: var(--accent-orange);
     --logo-color: var(--logo-and-hamburger-bg);
     --logo-and-hamburger-bg-on-hover: #f57c00;
     --logo-and-hamburger-text: var(--header--background-color);
@@ -326,6 +327,13 @@ main {
     padding: 0 10px;
 }
 
+.overflow-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
 .book-title {
     font-weight: bold;
     font-size: 1rem;
@@ -346,7 +354,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     color: var(--panel-text-color);
 }
 
@@ -364,4 +372,75 @@ main {
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
+}
+
+.screen-too-small {
+    display: none;
+}
+
+.no-books-yet {
+    display: none;
+    margin: auto;
+    border: 2px solid var(--accent-orange);
+    padding: 20px;
+    border-radius: 5px;
+    width: calc(20vw + 250px);
+    text-align: center;
+    font-weight: bold;
+}
+
+.no-books-yet > span {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: grey;
+}
+
+.no-books-yet > span:hover {
+    opacity: 0.6;
+}
+
+@media (width <= 320px) {
+    #main,
+    .add-new-book {
+        display: none;
+    }
+    .screen-too-small {
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        color: red;
+        padding: 50px;
+        font-weight: bold;
+    }
+}
+
+@media (width <= 380px) {
+    .overflow-ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80px;
+    }
+
+    * {
+        font-size: 0.6rem;
+    }
+}
+
+@media (577px <= width <= 768px) {
+    .books {
+        padding: 20px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (width >= 769px) {
+    .books {
+        padding: 20px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
