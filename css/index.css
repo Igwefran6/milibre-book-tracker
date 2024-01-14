@@ -399,6 +399,17 @@ main {
     opacity: 0.6;
 }
 
+.delete {
+    background: var(--cancel-btn-bg);
+    font-weight: bold;
+}
+
+.edit {
+    background: var(--submit-btn-bg);
+    font-weight: bold;
+    color: var(--main--background-color);
+}
+
 @media (width <= 320px) {
     #main,
     .add-new-book {

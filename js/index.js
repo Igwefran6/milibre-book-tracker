@@ -59,6 +59,7 @@ class Book {
                 </div>`;
         const htmlBookCard = document.querySelector(".books");
         htmlBookCard.innerHTML += newBook;
+        clearDialog();
         anyBookYet();
     }
 
@@ -112,11 +113,11 @@ class Book {
             let bookIndex = storedBooks.findIndex(
                 obj => obj.title.trim() === targetBook
             );
-        
+
             if (bookIndex !== -1) {
                 storedBooks.splice(bookIndex, 1, detailsOnDialog);
                 localStorage.setItem("books", JSON.stringify(storedBooks));
-
+                clearDialog();
                 setTimeout(function () {
                     updateDiv(eventFromParam);
                 }, 250);
@@ -233,13 +234,15 @@ function anyBookYet() {
     }
 }
 
-function clearDialog(argument) {
-    let [title, author, pages, isRead] = [
+function clearDialog() {
+    let [title, author, pages] = [
         "#book-title",
         "#book-author",
         "#book-page-count",
         "#isRead"
     ].map(selector => (document.querySelector(selector).value = ""));
+    
+    document.querySelector("#isRead").checked = false
 }
 
 function putDivDetailsToDialog(param) {
@@ -266,4 +269,5 @@ function putDivDetailsToDialog(param) {
 function randomSeed() {
     return JSON.stringify(Math.floor(Math.random() * 1001));
 }
+
 anyBookYet();
