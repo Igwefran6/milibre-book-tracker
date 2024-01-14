@@ -95,25 +95,27 @@ class Book {
     }
 
     static editBook(event) {
-        function handleEdit() {
-            
-            
-            
-            
-            document.removeEventListener("submit", handleEdit);
+        document.removeEventListener("submit", handleSubmitEvent);
+        const newEvent = event;
+        function handleEdit(event) {
+            event.preventDefault();
+            console.log("in");
+            document.removeEventListener("submit", handleEdit)
+            document.addEventListener("submit", handleSubmitEvent);
         }
         document.addEventListener("submit", handleEdit);
     }
 }
 
 // Necessary Events
-document.addEventListener("submit", event => {
+function handleSubmitEvent(event) {
     event.preventDefault();
     Book.addBookToLocalStorage();
-    setTimeout(function () {
-        dialog.close();
-    }, 100);
-});
+    dialog.close();
+    console.log("out");
+}
+
+document.addEventListener("submit", handleSubmitEvent);
 
 document.querySelector(".add-new-book").addEventListener("click", () => {
     dialog.showModal();
