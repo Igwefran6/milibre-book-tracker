@@ -33,7 +33,7 @@ class Book {
         let newBook = `<div class="book">
                     <div class="book-image">
                         <img
-                            src="https://picsum.photos/seed/204800/200/200"
+                            src="https://picsum.photos/seed/${randomSeed()}/200/200"
                             alt="book-image"
                         />
                     </div>
@@ -97,7 +97,7 @@ class Book {
     static editBook(event) {
         document.removeEventListener("submit", handleSubmitEvent);
         const eventFromParam = event;
-
+        putDivDetailsToDialog(eventFromParam);
         function handleEdit(event) {
             event.preventDefault();
             dialog.close();
@@ -110,21 +110,20 @@ class Book {
             let storedBooks = JSON.parse(localStorage.getItem("books"));
 
             let bookIndex = storedBooks.findIndex(
-                obj => obj["title"] === targetBook
+                obj => obj.title.trim() === targetBook
             );
-
+        
             if (bookIndex !== -1) {
                 storedBooks.splice(bookIndex, 1, detailsOnDialog);
                 localStorage.setItem("books", JSON.stringify(storedBooks));
 
-                updateDiv(eventFromParam);
-                console.log(detailsOnDialog);
+                setTimeout(function () {
+                    updateDiv(eventFromParam);
+                }, 250);
             }
 
             function updateDiv(targetBook) {
-                eventFromParam.target.closest(
-                    ".book-panel"
-                ).innerHTML = ` <div class="book-panel">
+                eventFromParam.target.closest(".book-panel").innerHTML = `
                         <div class="book-title">
                             <p class="overflow-ellipsis">${
                                 detailsOnDialog.title
@@ -149,7 +148,7 @@ class Book {
                                     ? "Completed"
                                     : "In progress"
                             }</div>
-                        </div>
+                
                     `;
             }
 
@@ -234,4 +233,37 @@ function anyBookYet() {
     }
 }
 
+function clearDialog(argument) {
+    let [title, author, pages, isRead] = [
+        "#book-title",
+        "#book-author",
+        "#book-page-count",
+        "#isRead"
+    ].map(selector => (document.querySelector(selector).value = ""));
+}
+
+function putDivDetailsToDialog(param) {
+    let bookPanel = param.target.closest(".book-panel");
+
+    document.querySelector("#book-title").value =
+        bookPanel.childNodes[1].textContent.trim();
+    document.querySelector("#book-author").value =
+        bookPanel.childNodes[3].textContent.trim();
+    document.querySelector("#book-page-count").value = parseInt(
+        bookPanel.childNodes[5].childNodes[1].textContent.trim()
+    );
+
+    let checkBox = document.querySelector("#isRead");
+
+    let checkboxStatus =
+        bookPanel.childNodes[5].childNodes[5].textContent.trim();
+
+    checkboxStatus === "Status: Read"
+        ? (checkBox.checked = true)
+        : (checkBox.checked = false);
+}
+
+function randomSeed() {
+    return JSON.stringify(Math.floor(Math.random() * 1001));
+}
 anyBookYet();
