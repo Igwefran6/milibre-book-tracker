@@ -96,11 +96,64 @@ class Book {
 
     static editBook(event) {
         document.removeEventListener("submit", handleSubmitEvent);
-        const newEvent = event;
+        const eventFromParam = event;
+
         function handleEdit(event) {
             event.preventDefault();
-            console.log("in");
-            document.removeEventListener("submit", handleEdit)
+            dialog.close();
+
+            let targetBook = eventFromParam.target
+                .closest(".book-panel")
+                .childNodes[1].textContent.trim();
+
+            let detailsOnDialog = getBookDetailsFromDialog();
+            let storedBooks = JSON.parse(localStorage.getItem("books"));
+
+            let bookIndex = storedBooks.findIndex(
+                obj => obj["title"] === targetBook
+            );
+
+            if (bookIndex !== -1) {
+                storedBooks.splice(bookIndex, 1, detailsOnDialog);
+                localStorage.setItem("books", JSON.stringify(storedBooks));
+
+                updateDiv(eventFromParam);
+                console.log(detailsOnDialog);
+            }
+
+            function updateDiv(targetBook) {
+                eventFromParam.target.closest(
+                    ".book-panel"
+                ).innerHTML = ` <div class="book-panel">
+                        <div class="book-title">
+                            <p class="overflow-ellipsis">${
+                                detailsOnDialog.title
+                            }</p>
+                        </div>
+                        <div class="book-author">
+                            <p class="overflow-ellipsis">${
+                                detailsOnDialog.author
+                            }</p>
+                        </div>
+                        <div class="other-book-items">
+                            <div class="pages">${
+                                detailsOnDialog.pages
+                            } pages</div>
+                            <div class="edit">Edit</div>
+                            <div>Status: ${
+                                detailsOnDialog.isRead ? "Read" : "Not Read"
+                            }</div>
+                            <div class="delete">Delete</div>
+                            <div>${
+                                detailsOnDialog.isRead
+                                    ? "Completed"
+                                    : "In progress"
+                            }</div>
+                        </div>
+                    `;
+            }
+
+            document.removeEventListener("submit", handleEdit);
             document.addEventListener("submit", handleSubmitEvent);
         }
         document.addEventListener("submit", handleEdit);
@@ -112,7 +165,6 @@ function handleSubmitEvent(event) {
     event.preventDefault();
     Book.addBookToLocalStorage();
     dialog.close();
-    console.log("out");
 }
 
 document.addEventListener("submit", handleSubmitEvent);
